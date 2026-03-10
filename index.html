@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinco Gatos — Vida con una manada felina</title>
+<meta name="description" content="Blog sobre convivencia, comportamiento y cuidado de gatos. Escrito por alguien que vive con cinco.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f9f5ef;
+    --warm: #f2ebe0;
+    --paper: #fdfaf5;
+    --text: #1e1a14;
+    --muted: #8c7d68;
+    --rust: #b5542a;
+    --rust-light: #f0ddd4;
+    --sage: #6b7c5e;
+    --border: #e0d5c5;
+    --dark: #1a1510;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Crimson Pro', serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .logo em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Crimson Pro', serif;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--rust); }
+
+  .nav-highlight {
+    color: var(--rust) !important;
+    border-bottom: 1px solid var(--rust);
+    padding-bottom: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 5rem 4rem 5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    animation: slideLeft 0.8s ease 0.1s both;
+  }
+
+  @keyframes slideLeft {
+    from { opacity:0; transform: translateX(-30px) }
+    to { opacity:1; transform: translateX(0) }
+  }
+
+  .hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rust);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-main {
+    background: var(--rust);
+    color: white;
+    padding: 0.75rem 1.8rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .btn-main:hover {
+    background: #9a4422;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(181,84,42,0.2);
+  }
+
+  .btn-ghost {
+    color: var(--muted);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.25s;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+  .hero-right {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: slideRight 0.8s ease 0.2s both;
+  }
+
+  @keyframes slideRight {
+    from { opacity:0; transform: translateX(30px) }
+    to { opacity:1; transform: translateX(0) }
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(181,84,42,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(107,124,94,0.1) 0%, transparent 50%);
+  }
+
+  .hero-center-text {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .big-cat {
+    font-size: 8rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-12px) }
+  }
+
+  .hero-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.5);
+    max-width: 280px;
+    line-height: 1.6;
+  }
+
+  .hero-dots {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: grid;
+    grid-template-columns: repeat(5, 8px);
+    gap: 6px;
+  }
+
+  .hero-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .hero-dots span:nth-child(1) { background: var(--rust); opacity: 0.7; }
+
+  /* ── TAGLINE STRIP ── */
+  .tagline-strip {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    padding: 0.9rem 3rem;
+    display: flex;
+    gap: 3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+
+  .tagline-strip span { white-space: nowrap; }
+  .tagline-strip .dot { color: var(--rust); }
+
+  /* ── ARTICLES ── */
+  .section {
+    padding: 5rem 5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .section-heading a {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    text-decoration: none;
+  }
+
+  /* FEATURED POST */
+  .featured-post {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    margin-bottom: 1.5px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .featured-post:hover {
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  }
+
+  .featured-visual {
+    background: var(--dark);
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 40% 50%, rgba(181,84,42,0.2), transparent 60%);
+  }
+
+  .featured-emoji {
+    font-size: 7rem;
+    position: relative;
+    z-index: 1;
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .featured-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post-cat {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.8rem;
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+  }
+
+  .post-title:hover { color: var(--rust); }
+
+  .post-excerpt {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-meta {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .read-more {
+    color: var(--rust);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+
+  .read-more:hover { gap: 0.8rem; }
+
+  /* GRID POSTS */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .post-card {
+    background: var(--paper);
+    padding: 2rem;
+    transition: background 0.25s;
+    cursor: pointer;
+  }
+
+  .post-card:hover { background: white; }
+
+  .post-card-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .post-card .post-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .post-card .post-excerpt {
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--dark);
+    color: white;
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .about-left h2 span { color: var(--rust); }
+
+  .about-cats {
+    font-size: 3rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-right p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-right p strong { color: rgba(255,255,255,0.85); font-weight: 400; }
+
+  /* NEWSLETTER */
+  .newsletter {
+    padding: 5rem;
+    text-align: center;
+    background: var(--warm);
+    border-top: 1px solid var(--border);
+  }
+
+  .newsletter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .newsletter h2 em { font-style: italic; color: var(--rust); }
+
+  .newsletter p {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 420px;
+    margin: 0 auto;
+    gap: 0;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.85rem 1.2rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-right: none;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: var(--text);
+    outline: none;
+    border-radius: 0;
+  }
+
+  .newsletter-form input::placeholder { color: var(--muted); }
+  .newsletter-form input:focus { border-color: var(--rust); }
+
+  .newsletter-form button {
+    background: var(--rust);
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 0;
+  }
+
+  .newsletter-form button:hover { background: #9a4422; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.4);
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  footer .logo { color: white; font-size: 1.3rem; }
+  footer .logo em { color: var(--rust); }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--rust); }
+
+  footer p { font-size: 0.78rem; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    header { padding: 0 1.5rem; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .section { padding: 3rem 1.5rem; }
+    .featured-post { grid-template-columns: 1fr; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+    .newsletter { padding: 3rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">Cinco <em>Gatos</em></a>
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Comportamiento</a>
+    <a href="#">Convivencia</a>
+    <a href="#">Accesorios</a>
+    <a href="#" class="nav-highlight">Sobre mí</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Blog felino desde Argentina</div>
+    <h1>La vida con<br><em>cinco gatos</em><br>no es para todos.</h1>
+    <p class="hero-desc">Pero si llegaste hasta acá, probablemente sea para vos. Escribo sobre comportamiento, convivencia y todo lo que aprendí viviendo con una manada felina real.</p>
+    <div class="hero-buttons">
+      <a href="#articulos" class="btn-main">Leer el blog</a>
+      <a href="#sobre-mi" class="btn-ghost">Sobre mí</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-center-text">
+      <div class="big-cat">🐱</div>
+      <p class="hero-quote">"Un gato te ignora con elegancia. Cinco te ignoran en sinfonía."</p>
+    </div>
+    <div class="hero-dots">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="tagline-strip">
+  <span><span class="dot">✦</span> Comportamiento Felino</span>
+  <span><span class="dot">✦</span> Convivencia en Manada</span>
+  <span><span class="dot">✦</span> Gatos de Interior y Exterior</span>
+  <span><span class="dot">✦</span> Accesorios Recomendados</span>
+  <span><span class="dot">✦</span> Experiencia Real</span>
+</div>
+
+<!-- ARTICLES -->
+<div class="section" id="articulos">
+  <div class="section-heading reveal">
+    <div>
+      <div class="section-eyebrow">Artículos recientes</div>
+      Últimas entradas
+    </div>
+    <a href="#">Ver todos →</a>
+  </div>
+
+  <!-- FEATURED -->
+  <div class="featured-post reveal">
+    <div class="featured-visual">
+      <div class="featured-emoji">🐾</div>
+    </div>
+    <div class="featured-content">
+      <div class="post-cat">⭐ Artículo destacado · Convivencia</div>
+      <a href="#" class="post-title">Cómo conviven 5 gatos en una misma casa sin matarse (lo que aprendí después de años intentándolo)</a>
+      <p class="post-excerpt">Vivir con cinco gatos no es un accidente. Es una decisión, una vocación y a veces un campo de batalla. Te cuento todo lo que aprendí sobre jerarquías, territorios y los accesorios que realmente cambiaron la dinámica de mi manada.</p>
+      <div class="post-meta">7 min de lectura · Comportamiento y convivencia</div>
+      <a href="#" class="read-more">Leer artículo →</a>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="posts-grid reveal" style="margin-top: 1.5px;">
+    <div class="post-card">
+      <span class="post-card-emoji">🌙</span>
+      <div class="post-cat">Comportamiento</div>
+      <a href="#" class="post-title">Gatos de interior vs exterior: lo que nadie te cuenta</a>
+      <p class="post-excerpt">Los míos tienen acceso al patio y eso cambia todo. Los riesgos, los beneficios y cómo gestionarlo con varios gatos.</p>
+      <a href="#" class="read-more">Leer →</a>
+    </div>
+
+    <div class="post-card">
+      <span class="post-card-emoji">🆕</span>
+      <div class="post-cat">Convivencia</div>
+      <a href="#" class="post-title">Cómo presentar un gato nuevo a una manada ya establecida</a>
+      <p class="post-excerpt">El proceso paso a paso que usé cada vez que sumé un nuevo integrante. Con errores incluidos.</p>
+      <a href="#" class="read-more">Leer →</a>
+    </div>
+
+    <div class="post-card">
+      <span class="post-card-emoji">🛒</span>
+      <div class="post-cat">Accesorios</div>
+      <a href="#" class="post-title">Los mejores accesorios para casas con varios gatos</a>
+      <p class="post-excerpt">Probé muchas cosas. Algunas fueron un gasto tirado. Estas son las que realmente valen la pena.</p>
+      <a href="#" class="read-more">Leer →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-strip" id="sobre-mi">
+  <div class="about-left">
+    <div class="about-cats">🐱🐱🐱🐱🐱</div>
+    <h2>Hola, soy <span>la humana</span> de la manada.</h2>
+  </div>
+  <div class="about-right">
+    <p>Empecé con uno. Después llegó otro. Y otro. Y de repente tenía <strong>cinco gatos</strong> en casa, algunos que salen al patio, cada uno con su personalidad, sus peleas y sus momentos de amor incondicional.</p>
+    <p>Lo que escribo acá no viene de libros — viene de <strong>años de observar, equivocarme y aprender</strong> viviendo con ellos. Si también vivís con varios gatos o estás pensando en sumar uno más a tu familia, este blog es para vos.</p>
+    <a href="#" class="btn-main" style="display:inline-block; margin-top:1rem;">Leer más sobre mí</a>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h2>Contenido nuevo,<br><em>directo a tu correo</em></h2>
+  <p>Sin spam. Solo artículos cuando los publico — que no es todos los días, pero sí valen la pena.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="tu@email.com">
+    <button>Suscribirme</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Cinco <em>Gatos</em></a>
+  <div class="footer-links">
+    <a href="#">Inicio</a>
+    <a href="#">Comportamiento</a>
+    <a href="#">Convivencia</a>
+    <a href="#">Accesorios</a>
+    <a href="#">Sobre mí</a>
+    <a href="#">Contacto</a>
+  </div>
+  <p>© 2025 Cinco Gatos · Este blog contiene links de afiliados.</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
